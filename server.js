@@ -4,8 +4,8 @@ const port = 4000;
 const splunk = require('@org/orgutils/common/elk_log');
 const Constants = require('@org/orgutils/common/constants');
 const routeUtil = require('@org/orgutils/utils/routes');
-const v1appRouter = require(appRoot + '/routes/v1/userRouter');
-const v2appRouter = require(appRoot + '/routes/v2/userRouter');
+const v1myappRouter = require(appRoot + '/routes/v1/myappRouter');
+const v2myappRouter = require(appRoot + '/routes/v2/myappRouter');
 
 process.on('unhandledRejection', function (reason, p) {
   let logMessage = 'App Unhandled Rejection at: ' + p + ' and reason: ' + reason;
@@ -17,8 +17,8 @@ process.on('uncaughtException', function (error) {
   elklogger.log(logMessage, null, null, 0, null, null, Constants.TRACE_POINT.PRINT);
 });
 
-app.use('/api/v1/', v1appRouter);
-app.use('/api/v2/', v2appRouter);
+app.use('/api/v1/', v1myappRouter);
+//app.use('/api/v2/', v2myappRouter);
 
 
 routeUtil.printRoutes(app);
